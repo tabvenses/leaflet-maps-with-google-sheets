@@ -67,11 +67,31 @@
   <table id="maptable" class="display"></table>
 
   <script type="text/javascript">
+    var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+    var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+    var baseLayers = {
+    "Google一般地圖" : googleStreets,
+    "Google衛星地圖" : googleHybrid,
+}
+    var overlayLayers = {
+}
     var map = L.map('map', {
       attributionControl: false,
       zoomControl: false,
       scrollWheelZoom: false
     }).setView([41.76,-72.69], 11); // default center is overridden by Google Sheet options and points
+    
+L.control.layers(baseLayers, overlayLayers).addTo(map);
+L.control.zoom({
+    zoomInTitle: '放大',
+    zoomOutTitle: '缩小'
+}).addTo(map);
   </script>
 
   <script type="text/javascript" src="google-doc-url.js"></script>
