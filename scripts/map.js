@@ -370,7 +370,7 @@ $(window).on('load', function() {
       allPolygonLayers.push(polygonLayers);
 
       var legendPos = tryPolygonSetting(p, '_polygonsLegendPosition', 'off');
-      polygonsLegend = L.control({position: (legendPos == 'off') ? legendPos : legendPos});
+      polygonsLegend = L.control({position: (legendPos == 'off') ? 'off' : 'off'});
 
       polygonsLegend.onAdd = function(map) {
         var content = '<h6 class="pointer">' + getPolygonSetting(p, '_polygonsLegendTitle') + '</h6>';
