@@ -82,7 +82,7 @@
     var map = L.map('map', {
       attributionControl: false,
       zoomControl: false,
-      scrollWheelZoom: true
+      scrollWheelZoom: false,
     }).setView([34.55, 108.95], 5); // default center is overridden by Google Sheet options and points
     
 L.control.layers(baseLayers, overlayLayers).addTo(map);
