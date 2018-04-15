@@ -58,6 +58,9 @@
   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
+  <!-- Chinese Provider  -->
+  <script type="text/javascript" src='../script/leaflet.ChineseTmsProviders.js'></script>
+
 </head>
 
 <body>
@@ -76,7 +79,28 @@
     var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
+    var normalm = L.tileLayer.chinaProvider('TianDiTu.Normal.Map', {
+        maxZoom: 18,
+        minZoom: 5
+    }),
+    normala = L.tileLayer.chinaProvider('TianDiTu.Normal.Annotion', {
+        maxZoom: 18,
+        minZoom: 5
+    }),
+    imgm = L.tileLayer.chinaProvider('TianDiTu.Satellite.Map', {
+        maxZoom: 18,
+        minZoom: 5
+    }),
+    imga = L.tileLayer.chinaProvider('TianDiTu.Satellite.Annotion', {
+        maxZoom: 18,
+        minZoom: 5
+    });
+    var normal = L.layerGroup([normalm, normala]),
+    image = L.layerGroup([imgm, imga]);
+	  
     var baseLayers = {
+    "天地圖-一般地圖": normal,
+    "天地圖-影像地圖": image,
     "Google一般地圖" : googleStreets,
     "Google衛星地圖" : googleHybrid,
     "OpenStreetMap": OpenStreetMap_Mapnik,
